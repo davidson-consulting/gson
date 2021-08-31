@@ -21,7 +21,7 @@ jobs:
       - name: export LD_LIBRARY
         run: LD_LIBRARY_PATH=/home/benjamin/workspace/j-joules/src/main/c/lib
       - name: Diff-JJoules Demo
-        run: mvn -f ../v1/gson/pom.xml clean fr.davidson:diff-jjoules:diff-jjoules -Dpath-dir-second-version=/home/benjamin/workspace/actions-runner-gson/_work/gson/v2/gson/
+        run: mvn -f ../v1/gson/pom.xml clean fr.davidson:diff-jjoules:diff-jjoules -Dpath-dir-second-version=/home/benjamin/workspace/actions-runner-gson/_work/gson/v2/gson/ -Dpath-repo-v1=/home/benjamin/workspace/actions-runner-gson/_work/gson/v1 -Dpath-repo-v2=/home/benjamin/workspace/actions-runner-gson/_work/gson/v2
         env:
           LD_LIBRARY_PATH: /home/benjamin/workspace/j-joules/src/main/c/lib
           
