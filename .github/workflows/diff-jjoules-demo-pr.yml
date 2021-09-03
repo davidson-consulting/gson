@@ -2,7 +2,7 @@ name: Diff-JJoules Demo Pull Request
 
 on:
   pull_request:
-    branches: [ v1 ]
+    branches: [ v1, v2 ]
 
 jobs:
   diff-jjoules-demo:
