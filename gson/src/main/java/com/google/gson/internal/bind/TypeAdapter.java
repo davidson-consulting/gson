@@ -18,9 +18,11 @@ package com.google.gson.internal.bind;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
+import com.google.gson.internal.Streams;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -54,10 +56,13 @@ public abstract class TypeAdapter<T> {
 
   public JsonElement toJsonElement(T src) {
     try {
-      JsonElementWriter jsonWriter = new JsonElementWriter();
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
       jsonWriter.setLenient(true);
       write(jsonWriter, src);
-      return jsonWriter.get();
+      JsonReader reader = new JsonReader(new StringReader(stringWriter.toString()));
+      reader.setLenient(true);
+      return Streams.parse(reader);
     } catch (IOException e) {
       throw new JsonIOException(e);
     }

@@ -51,11 +51,8 @@ public final class JsonElementWriter extends JsonWriter {
   }
 
   public JsonElement get() {
-    if (stack.isEmpty()) {
-      return JsonNull.INSTANCE; // TODO: is this really what we want?
-    }
     if (stack.size() != 1) {
-      throw new IllegalStateException("Expected one JSON element but was " + stack);
+      throw new IllegalStateException();
     }
     return stack.get(0);
   }
@@ -132,9 +129,6 @@ public final class JsonElementWriter extends JsonWriter {
   }
 
   @Override public JsonWriter value(String value) throws IOException {
-    if (value == null) {
-      return nullValue();
-    }
     put(new JsonPrimitive(value));
     return this;
   }
